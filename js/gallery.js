@@ -67,6 +67,7 @@ const images = [
 
 const galleryEl = document.querySelector(".gallery");
 
+
 function createMarkup(image) {
     
     return image.map(({preview, original, description}) => `
@@ -75,7 +76,7 @@ function createMarkup(image) {
                     <img
                         class="gallery-image"
                         src= "${preview}"
-                        data-source= href="${original}"
+                        data-source= "href=${original}"
                         alt= "${description}"
                     />
                 </a>
@@ -91,7 +92,17 @@ galleryEl.addEventListener("click", (event) => {
 
     if (link) {
         event.preventDefault();
-        console.log(link.href);
-    }
+        //console.log(link.href);
+        const instance = basicLightbox.create(`
+            <img src="${link}" width="800" height="600">
+        `,{
+            onShow: (instance) => {
+            instance.element().querySelector('.basicLightbox__placeholder').style.backgroundColor = 'rgba(46, 47, 66, 0.8)';
+        }
+    })
+
+        instance.show()
+        }
+
     
 })
