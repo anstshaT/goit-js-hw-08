@@ -88,21 +88,22 @@ function createMarkup(image) {
 galleryEl.insertAdjacentHTML("beforeend", createMarkup(images));
 
 galleryEl.addEventListener("click", (event) => {
-    const link = event.target.closest(".gallery-link");
+    // const link = event.target.closest(".gallery-link");
 
-    if (link) {
         event.preventDefault();
-        //console.log(link.href);
+
+        const imgSrc = event.target.dataset.source;
+        const srcValue = imgSrc.replace("href=", "");
+        console.log(srcValue);
+
+
         const instance = basicLightbox.create(`
-            <img src="${link}" width="800" height="600">
+            <img src="${srcValue}" width="800" height="600">
         `,{
             onShow: (instance) => {
             instance.element().querySelector('.basicLightbox__placeholder').style.backgroundColor = 'rgba(46, 47, 66, 0.8)';
         }
-    })
+        })
 
-        instance.show()
-        }
-
-    
+        instance.show();  
 })
