@@ -76,8 +76,8 @@ function createMarkup(image) {
                     <img
                         class="gallery-image"
                         src= "${preview}"
-                        data-source= "href=${original}"
-                        alt= "${description}"
+                        data-source= "${original}"
+                        alt= ${description}
                     />
                 </a>
             </li>
@@ -93,12 +93,14 @@ galleryEl.addEventListener("click", (event) => {
         event.preventDefault();
 
         const imgSrc = event.target.dataset.source;
-        const srcValue = imgSrc.replace("href=", "");
-        console.log(srcValue);
+        // const srcValue = imgSrc.replace("href=", "");
+        // console.log(srcValue);
+        console.log(imgSrc);
+        
 
 
         const instance = basicLightbox.create(`
-            <img src="${srcValue}" width="800" height="600">
+            <img src="${imgSrc}" width="800" height="600">
         `,{
             onShow: (instance) => {
             instance.element().querySelector('.basicLightbox__placeholder').style.backgroundColor = 'rgba(46, 47, 66, 0.8)';
